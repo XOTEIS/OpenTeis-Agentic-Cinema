@@ -1,16 +1,13 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-from abc import ABC, abstractmethod
 
-class Planner(ABC):
-    @abstractmethod
-    def plan(self, timeseries: pd.DataFrame, locations: pd.DataFrame, travel_costs: pd.DataFrame, settings) -> pd.DataFrame:
-        pass
-
-class OpenTeisPlanner(Planner):
+class Planner:
+    """
+    BatterySwapAI 2026 Competition Planner
+    """
     def __init__(self):
-        super().__init__()
+        pass
 
     def plan(self, timeseries: pd.DataFrame, locations: pd.DataFrame, travel_costs: pd.DataFrame, settings) -> pd.DataFrame:
         start_date = pd.to_datetime(getattr(settings, 'start_date', timeseries['end_time'].max())).date()
@@ -102,3 +99,6 @@ class OpenTeisPlanner(Planner):
 
         full_plan = pd.DataFrame(scheduled_swaps + no_swaps)
         return full_plan[['day', 'battery']]
+
+# Fallback alias dersom runneren søker etter modellspesifikt navn
+OpenTeisPlanner = Planner
