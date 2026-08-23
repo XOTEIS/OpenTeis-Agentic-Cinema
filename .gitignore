@@ -2,4 +2,3 @@ dataset/
 *.parquet
 *.csv
 __pycache__/
-.env
