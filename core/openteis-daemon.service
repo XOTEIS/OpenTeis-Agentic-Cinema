@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenTeis Prime Core Daemon & WORM Vault
+After=network.target
+
+[Service]
+Type=simple
+User=%u
+WorkingDirectory=/home/openteis/core
+ExecStart=/usr/bin/python3 /home/openteis/core/openteis_daemon.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
